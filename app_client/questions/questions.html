@@ -1,0 +1,21 @@
+<page-header> </page-header>
+<div class="row">
+  <span class="glyphicon glyphicon-home"></span>
+</div>
+<div id="questionsAccordion" class="panel-group" ng-init="$scope.current=0">
+  <div ng-repeat="(question, count) in vm.questions.content">
+    <div class="panel panel-primary" ng-init="$parent.current = $parent.current + 1">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" ng-href="#collapse{{current}}"><span class="glyphicon glyphicon-chevron-right" style="padding-right : 10px;"></span>Question</a>
+        </h4>
+      </div>
+      <div ng-attr-id="collapse{{current}}" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>question.content</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

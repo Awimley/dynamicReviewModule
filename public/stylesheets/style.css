@@ -1,0 +1,73 @@
+
+p.border {
+  margin-left : 13px;
+  margin-top: 8px;
+  font-size: 0.9em;
+  border-style: solid;
+  border-width: medium;
+  border-color: #000000;
+}
+#container {
+  margin: 25px;
+}
+.glyphicon-plus {
+  font-size: xx-large;
+}
+#fieldName {
+  font-size: x-large;
+  vertical-align: bottom;
+}
+.customInputGroup {
+  font-size: x-large;
+}
+.customInput {
+  font-size: x-large;
+  width: 100%;
+}
+#pros {
+  font-size: x-large;
+}
+#cons {
+  font-size: x-large;
+}
+#prosUl {
+  font-size: x-large;
+  margin: 12px;
+}
+#consUl {
+  font-size: x-large;
+  margin: 12px;
+}
+select {
+  font-size: x-large;
+  color: black;
+}
+.stars {
+  height: 46px;
+}
+.stars-span {
+  top: 25%;
+}
+.glyphicon-star {
+  font-size: 1.4em;
+}
+input {
+  width: 100%;
+  font-size: x-large;
+}
+label {
+  font-size: x-large;
+}
+.list {
+  font-size: large;
+}
+.subInput {
+  width: 60%;
+  margin-left: 10px;
+}
+.selectHeader {
+  margin-top: 10px;
+}
+.selectOptions {
+  margin-top: 10px;
+}

@@ -1,0 +1,37 @@
+{
+  "name": "sportsApp",
+  "version": "1.0.0",
+  "description": "An application to test your sports prediction ability. Comes with fabulous prizes! Will be iOS and android native eventually.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm",
+    "football",
+    "angular"
+  ],
+  "author": "Andrew Wimley",
+  "license": "None",
+  "dependencies": {
+    "angular": "^1.3.5",
+    "angular-ui-tinymce": "*",
+    "body-parser": "~1.8.1",
+    "bson": "*",
+    "cookie-parser": "~1.3.3",
+    "debug": "~2.0.0",
+    "express": "~4.9.0",
+    "express-session": "*",
+    "gridfs": "0.0.2",
+    "jade": "~1.6.0",
+    "method-override": "*",
+    "mongodb": "1.4.9",
+    "mongoose": "*",
+    "mongoose-file": "0.0.2",
+    "morgan": "~1.3.0",
+    "nodemon": "^1.2.1",
+    "passport-http": "*",
+    "serve-favicon": "~2.1.3",
+    "ejs" : "*"
+  }
+}

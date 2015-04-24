@@ -1,0 +1,144 @@
+<div id="container">
+  <h3>Angular JS Dynamic Field Review Module</h3>
+  <hr>
+  <h4>Review Type:</h4> <button class="btn btn-default" ng-click="vm.go('/createTemplate')" style="height: 45px;">Make a template</button>
+  <select ng-options="temp as temp.cat for temp in vm.templates" ng-model="vm.template">
+  </select>
+  <h4>Review Text:</h4>
+  <textarea id="mce" ui-tinymce ng-model="tinymceModel"></textarea>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <button class="button btn-primary" ng-click="vm.saveReview($event)">Save Document</button>
+    </div>
+    <div class="col-xs-6">
+      <input type="file" ng-model="model.file" change="upload(model)" />
+    </div>
+  </div>
+  <img ng-src="{{model.file}}">
+
+  <div class="row">
+    <div class="col-xs-1"><h4>Rating: </h4></div>
+    <div class="col-xs-3 stars"><span class="glyphicon glyphicon-star stars-span pull-left" style="color: yellow;" ng-repeat="i in vm.makeArray(vm.rating) track by $index"></span></div>
+    <div class="col-xs-8"></div>
+  </div>
+
+    <select ng-model="vm.rating" ng-options="rating.num as rating.name for rating in vm.ratings">
+    </select>
+
+    <div class="row">     
+      <div class="col-xs-2">
+        <h4>Strengths and Weaknesses:</h4>
+      </div>
+
+      <!-- PROS -->
+      <div class="col-xs-5" id="pros">
+        <h4 class="">Pros:</h4>
+        <form>
+          <input id="addPro" placeholder="add a pro" ng-model="vm.proInput" ng-keyup="vm.clearOnEnterPro($event)">
+          <button ng-show="false" pro="1" pros-and-cons pro-input="{{ vm.proInput }}"></button>
+        </form>
+        <ul id="prosUl"></ul>
+      </div>
+
+      <!-- CONS -->
+      <div class="col-xs-5" id="cons">
+        <h4 class="">Cons:</h4>
+        <form>
+          <input id="addCon" placeholder="add a con" ng-model="vm.conInput" ng-keyup="vm.clearOnEnterCon($event)">
+          <button ng-show="false" con="1" pros-and-cons con-input="{{ vm.conInput }}"></button>
+        </form>
+        <ul id="consUl"></ul>
+      </div>
+    </div>
+  <hr>
+  <!-- CUSTOM FIELDS -->
+  <div id="textFields">
+    <div class="row" ng-repeat="text in vm.template.text">
+      <div class="col-xs-2">
+        <label class="pull-right">{{ text }} :</label>
+      </div>
+      <div class="col-xs-10">
+        <input ng-model="vm.form.text[text]">
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div id="rtffields" ng-repeat="rtf in vm.template.rtf">
+    <div class="row">
+      <label class="text-center">{{ rtf }}</label>
+    </div>
+    <div class="row">
+      <textarea ui-tinymce ng-model="vm.form.rtf[rtf]"></textarea>
+    </div>
+    <br />
+  </div>
+
+  <hr />
+  <div id="selectSection">
+    <div id="selectFields" class="row" ng-repeat="(select, options) in vm.template.select">
+      <div class="col-xs-2">
+        <h3 class="selectHeader">{{select}} :</h3>
+      </div>
+      <div class="col-xs-10 selectOptions">
+        <select ng-options="options as options for options in options" ng-model="vm.form.select[select]"></select>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <hr />
+
+  <div id="checkFields"> <!-- STILL NEEDS TO BE MODELED TO SCOPE OBJECT -->
+    <div class="row" ng-repeat="(check, options) in vm.template.check">
+      <div class="col-xs-2">
+        <label> {{check}} :</label>
+      </div>
+      <div class="col-xs-10">
+        <div class="row" ng-repeat="option in options">
+          <div class="col-xs-1">
+            <input class="pull-left" type="checkbox" style="height: 25px; width: 25px; margin-top: 8px;">
+          </div>
+          <div class="col-xs-11">
+            <label class="pull-left" style="margin-bottom: 8px;"> {{option}} </label>
+          </div>
+        </div>
+        <hr />            
+      </div>
+    </div>
+  </div>
+
+  <!-- <form id="addFields">
+    <div class="row">
+      <div class="col-xs-4">
+        <h3>Add custom input fields:</h3>
+      </div>
+      <div class="col-xs-4">
+        <input id="fieldName" placeholder="Enter field name:" ng-model="vm.fieldName" ng-keyup="vm.clearOnEnterField($event)" html-safe="vm.htmlSafe()"></input>
+        <button field-name="{{vm.fieldName | htmlSafe}}" id="addFieldBtn" add-input-fields ng-hide="1"><span class="glyphicon glyphicon-plus"></span></button>
+      </div>
+      <div class="col-xs-4">
+        <select id="inputType" style="font-size: x-large;" ng-options="input as input for input in vm.inputTypes" ng-model="vm.input" input-type="{{ vm.input }}">
+          <option>input</option>
+          <option>tinyMCE text editor</option>
+          <option>checkbox</option>
+          <option>select</option> 
+        </select>
+      </div>
+    </div>
+  </form> -->
+
+  <form id="saveReview">
+    <div class="row btn-group btn-group-justified">
+      <div class="col-xs-4"><button ng-hide="true"></button></div>
+      <div class="col-xs-4">
+        <button class="btn btn-default btn-lg" ng-show="!vm.areYouSure" ng-click="vm.areYouSure = 1">Clear</button>
+        <button class="btn btn-danger btn-lg" ng-show="vm.areYouSure" ng-click="vm.clearForms()">Are you sure?</button>
+      </div>
+      <div class="col-xs-4"><button class="btn btn-primary btn-lg" ng-click="vm.saveReview()">Save Review</button></div>
+    </div>
+  </form>
+  <footerGeneric></footerGeneric>
+</div>

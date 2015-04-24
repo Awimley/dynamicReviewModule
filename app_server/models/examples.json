@@ -1,0 +1,13 @@
+{
+  cat: "example",
+  text: ["payment scheme", "some other field"],
+  check: [{
+    field: "do you want checks",
+    options: ["yes", "no"]
+  }],
+  rtf: ["review text"],
+  select: [{
+    field: "select a number",
+    options: ["one", "two", "three"]
+  }]
+}

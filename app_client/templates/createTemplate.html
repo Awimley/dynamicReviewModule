@@ -1,0 +1,139 @@
+<div id="container">
+  <h3>Create a review template</h3>
+  <h4>Use ENTER key to submit fields. Defaults: RTF review text, pro/con lists, rating.</h4>
+  <div class="row">
+    <div class="col-xs-3">
+      <button class="btn btn-default" ng-click="vm.go('/')">Add review</button>
+    </div>
+    <div class="col-xs-3">
+      <button class="btn btn-default">Update a template</button>
+    </div>
+  </div>
+  <hr>
+  <form>
+    <div class="row form-group">
+      <div class="col-xs-4">
+        <label>Category (must be unique):</label>
+      </div>
+      <div class="col-xs-8">
+        <input ng-model="vm.temp.cat" ng-disabled="vm.setCat">
+      </div>
+    </div>
+    <button ng-hide="1" ng-click="vm.addCat()"></button>
+  </form>
+
+  <form>
+    <div class="row form-group">
+      <div class="col-xs-4">
+        <label>Add a text field:</label>
+      </div>
+      <div class="col-xs-8">
+        <input ng-model="vm.text">
+      </div>
+    </div>
+    <button ng-hide="1" ng-click="vm.addText()"></button>
+  </form>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <label ng-show="{{ vm.temp.text }}">Current text fields:</label>
+    </div>
+    <div class="col-xs-8">
+      <ul class="list">
+        <li ng-repeat="text in vm.temp.text">{{ text }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <form>
+    <div class="row form-group">
+      <div class="col-xs-4">
+        <label>Add an RTF text area:</label>
+      </div>
+      <div class="col-xs-8">
+        <input ng-model="vm.rtf">
+      </div>
+    </div>
+    <button ng-hide="1" ng-click="vm.addRTF()"></button>
+  </form>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <label ng-show="{{ vm.temp.rtf }}">Current RTF fields:</label>
+    </div>
+    <div class="col-xs-8">
+      <ul class="list">
+        <li ng-repeat="rtf in vm.temp.rtf">{{ rtf }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <form>
+    <div class="row form-group">
+      <div class="col-xs-4">
+        <label>Add a checkbox field:</label>
+      </div>
+      <div class="col-xs-8">
+        <input ng-model="vm.check">
+      </div>
+    </div>
+    <button ng-hide="1" ng-click="vm.addCheck()"></button>
+  </form>
+  <hr>
+
+  <div class="row" ng-repeat="(prop, check) in vm.temp.check">
+    <div class="col-xs-4">
+      <label ng-show=""></label>
+    </div>
+    <div class="col-xs-8">
+      <form>
+        <ul>
+          <li>{{ prop }} : {{ check }} <input ng-model="vm.checkOptions[prop]" placeholder="add an option" class="subInput"></li> <!-- NG MODEL THIS -->
+        </ul>
+        <button ng-hide="1" ng-click="vm.addCheckOption(prop)"></button>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+  <form>
+    <div class="row form-group">
+      <div class="col-xs-4">
+        <label>Selections with options:</label>
+      </div>
+      <div class="col-xs-8">
+        <input ng-model="vm.select">
+      </div>
+    </div>
+    <button ng-hide="1" ng-click="vm.addSelect()"></button>
+    <hr>
+  </form>
+
+  <div class="row" ng-repeat="(prop, select) in vm.temp.select">
+    <div class="col-xs-4">
+      <label ng-show=""></label>
+    </div>
+    <div class="col-xs-8">
+      <form>
+        <ul>
+          <li>{{ prop }} : {{ select }}<input placeholder="add an option" class="subInput" ng-model="vm.selectOptions[prop]"></li> <!-- NG MODEL THIS -->
+        </ul>
+        <button ng-hide="1" ng-click="vm.addSelectOption(prop)"></button>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row btn-group btn-group-justified">
+    <div class="col-xs-4">
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-default">Clear Form</button>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-primary" ng-click="vm.saveTemplate()">Save Template</button>
+    </div>
+
+  <p>Current Template Object (debugging purposes): {{ vm.temp }}</p>
+  </div>
+</div>
