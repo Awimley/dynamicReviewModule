@@ -80,7 +80,7 @@
   <div id="selectSection">
     <div id="selectFields" class="row" ng-repeat="(select, options) in vm.template.select">
       <div class="col-xs-2">
-        <h3 class="selectHeader">{{select}} :</h3>
+        <h3 class="selectHeader">{{ select }} :</h3>
       </div>
       <div class="col-xs-10 selectOptions">
         <select ng-options="options as options for options in options" ng-model="vm.form.select[select]"></select>
@@ -93,16 +93,16 @@
 
   <div id="checkFields"> <!-- STILL NEEDS TO BE MODELED TO SCOPE OBJECT -->
     <div class="row" ng-repeat="(check, options) in vm.template.check">
-      <div class="col-xs-2">
+      <div class="col-xs-2" ng-init="vm.form.check[check] = {};">
         <label> {{check}} :</label>
       </div>
       <div class="col-xs-10">
         <div class="row" ng-repeat="option in options">
           <div class="col-xs-1">
-            <input class="pull-left" type="checkbox" style="height: 25px; width: 25px; margin-top: 8px;">
+            <input class="pull-left formcheckbox" type="checkbox" ng-init="vm.form.check[check][option] = false;" ng-model="vm.form.check[check][option]">
           </div>
           <div class="col-xs-11">
-            <label class="pull-left" style="margin-bottom: 8px;"> {{option}} </label>
+            <label class="pull-left" style="margin-bottom: 8px;"> {{ option }} </label>
           </div>
         </div>
         <hr />            

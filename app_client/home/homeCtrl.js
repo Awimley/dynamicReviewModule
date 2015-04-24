@@ -2,8 +2,8 @@
   angular.module('reviewModule')
          .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$resource', '$log', 'reviewData', '$location'];
-  function homeCtrl ($scope, $resource, $log, reviewData, $location) {
+  homeCtrl.$inject = ['$scope', '$resource', '$log', 'reviewData', '$location', '$route'];
+  function homeCtrl ($scope, $resource, $log, reviewData, $location, $route) {
     reviewData.getTemplates()
     .success(function (data) {
       vm.templates = data;
@@ -100,6 +100,9 @@
       angular.forEach(vm.pros, function (v,i) {
         $log.debug(v);
       });
+      vm.form.rtf["reviewText"] = tinyMCE.get("mce").getContent();
+
+      $log.debug(vm.form);
     }
 
     vm.go = function (path) {
@@ -108,12 +111,15 @@
 
     //Master clear
     vm.clearForms = function () {
-      document.getElementById('prosUl').innerHTML = '';
+      $route.reload();
+/*      document.getElementById('prosUl').innerHTML = '';
       document.getElementById('consUl').innerHTML = '';
       tinyMCE.get("mce").setContent('');
+      
+
       vm.areYouSure = 0;
 
-      $log.debug(reviewData.getTemplate(''));
+      $log.debug(reviewData.getTemplate(''));*/
     };
   }
 })()
