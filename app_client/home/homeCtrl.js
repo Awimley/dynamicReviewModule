@@ -72,6 +72,8 @@
       vm.form.check = vm.review.check;
       vm.form.select = vm.review.select;
       vm.form.user = vm.review.user;
+      vm.form._id = vm.review._id;
+      $log.debug(vm.form._id);
     };
 
     vm.makeArray = function (num) {
@@ -152,33 +154,13 @@
       vm.form.cat = vm.template.cat;
       vm.form.rating = vm.rating;
 
-      //Exporting custom areas
-      if (vm.review) {
-        $log.debug('we have loaded a review.');
-      }
-
-      //text
-      if (vm.review) {
-        vm.form.text = vm.review.text;
-      }
-
-      //rtf
-      if (vm.review) {
-        vm.form.rtf = vm.review.rtf;
-      }
-
-      //select
-      if (vm.review) {
-        vm.form.select = vm.review.select;
-      }
-
-      //check
-      if (vm.review) {
-        vm.form.check = vm.review.check;
-      }
-      
-      reviewData.saveReview(vm.form);
-      $route.reload();
+      reviewData.saveReview(vm.form)
+      .success(function () {
+        $route.reload();
+      })
+      .error(function (err) {
+        vm.error = err;
+      });
     };
 
     vm.go = function (path) {

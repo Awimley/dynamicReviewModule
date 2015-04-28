@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var db = require('../models/db');
 var template = require('../models/template.js');
 var review = require('../models/reviews.js');
@@ -17,22 +18,31 @@ module.exports.storeImage = function (img) {
 module.exports.getReviews = function (req, res) {
   console.log('fetching reviews...');
   review.find({}, function (err, data) {
-    if (err) {sendJsonResponse(res, 401, err);}
+    if (err) {sendJsonResponse(res, 404, err);}
     sendJsonResponse(res, 200, data);
   });
 };
 
 module.exports.saveReview = function (req, res) {
-  console.log(req.body);
-  var rev = new review(req.body);
-  rev.save( function (err, data) {
-    if (err) sendJsonResponse(res, 401, err);
-    sendJsonResponse(res, 201, data);
-  });
+  review.findById(mongoose.Types.ObjectId(req.body._id), function (err, doc) {
+    if (err) {sendJsonResponse(res, 401, err);}
+    if (doc) {                                                                  //if it exists, do an update
+      template.update({_id: req.body._id}, req.body, function (err, data) {
+        if (err) {sendJsonResponse(res, 404, err);}
+        sendJsonResponse(res, 204, data);
+      });
+    } else {                                                                    //else go create a new one.
+      var rev = new review(req.body);
+      rev.save( function (err, data) {
+        if (err) sendJsonResponse(res, 401, err);
+        sendJsonResponse(res, 201, data);
+      });
+    }
+  });  
 };
 
 module.exports.deleteReview = function (req, res) {
-  console.log('deleting a review. JK DELETE API NOT CONNECTED');
+  
 };
 
 module.exports.getTemplate = function (req, res) {
