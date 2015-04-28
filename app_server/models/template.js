@@ -6,8 +6,7 @@ var templateSchema = new mongoose.Schema({
   rtf: Array,
   check: Object,
   select: Object
-});
-
+}, {strict: false});
 /*
 check: {
   field: String,
