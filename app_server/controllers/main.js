@@ -1,5 +1,4 @@
 var express = require('express');
-var bson = require('BSON');
 var db = require('../models/db');
 var template = require('../models/template.js');
 var review = require('../models/reviews.js');
@@ -11,7 +10,7 @@ var sendJsonResponse = function (res, status, content) {
 };
 
 module.exports.storeImage = function (img) {
-  var imageSer = bson().BSON.serialize(img, false, true, false);
+ /* var imageSer = bson().BSON.serialize(img, false, true, false);*/
   console.log("img: ", imageSer);
 };
 
