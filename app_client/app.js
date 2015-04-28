@@ -1,6 +1,6 @@
 (function () {
 
-angular.module('reviewModule', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ui.tinymce', 'ur.file', 'ngResource']);
+angular.module('reviewModule', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ui.tinymce', 'ngResource']);
 
 config.$inject = ['$routeProvider', '$locationProvider'];
 function config ($routeProvider, $locationProvider) {
