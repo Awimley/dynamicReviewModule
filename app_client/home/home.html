@@ -1,9 +1,27 @@
 <div id="container">
   <h3>Angular JS Dynamic Field Review Module</h3>
   <hr>
-  <h4>Review Type:</h4> <button class="btn btn-default" ng-click="vm.go('/createTemplate')" style="height: 45px;">Make a template</button>
-  <select ng-options="temp as temp.cat for temp in vm.templates" ng-model="vm.template">
-  </select>
+  <div class="row errors">
+    <h3 class="alert-danger text-center" ng-show="vm.error">{{ vm.error }}</h4>
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <h4>Product Category:</h4> 
+    </div>
+    <div class="col-xs-2">
+      <select class="pull-left homeBar" ng-options="temp as temp.cat for temp in vm.templates" ng-model="vm.template">
+      </select>
+      <select class="pull-left homeBar" ng-show="vm.template" ng-options="review as review.user for review in vm.reviews" ng-model="vm.review" ng-change="vm.loadReview()">
+      </select>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-default" ng-click="vm.go('/createTemplate')" style="height: 45px; width: 270px;">Make a template</button>
+    </div>
+    <div class="col-xs-4">
+      <h4> User(hardcoded for testing): </h4>
+      <input ng-model="vm.form.user">
+    </div>
+  </div>
   <h4>Review Text:</h4>
   <textarea id="mce" ui-tinymce ng-model="tinymceModel"></textarea>
 
@@ -36,9 +54,11 @@
         <h4 class="">Pros:</h4>
         <form>
           <input id="addPro" placeholder="add a pro" ng-model="vm.proInput" ng-keyup="vm.clearOnEnterPro($event)">
-          <button ng-show="false" pro="1" pros-and-cons pro-input="{{ vm.proInput }}"></button>
+          <button ng-show="false" pro="1" pro-input="{{ vm.proInput }}" ng-click="vm.clearOnEnterPro($event)"></button>
         </form>
-        <ul id="prosUl"></ul>
+        <ul id="prosUl" ng-repeat="pro in vm.pros">
+          <li>{{ pro }}</li>
+        </ul>
       </div>
 
       <!-- CONS -->
@@ -46,9 +66,11 @@
         <h4 class="">Cons:</h4>
         <form>
           <input id="addCon" placeholder="add a con" ng-model="vm.conInput" ng-keyup="vm.clearOnEnterCon($event)">
-          <button ng-show="false" con="1" pros-and-cons con-input="{{ vm.conInput }}"></button>
+          <button ng-show="false" con="1" con-input="{{ vm.conInput }}" ng-click="vm.clearOnEnterCon($event)"></button>
         </form>
-        <ul id="consUl"></ul>
+        <ul id="consUl" ng-repeat="con in vm.cons">
+          <li>{{ con }}</li>
+        </ul>
       </div>
     </div>
   <hr>

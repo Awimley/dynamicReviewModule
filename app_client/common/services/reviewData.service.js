@@ -8,16 +8,21 @@ angular.module('reviewModule')
     var storeImage = function(img) {
       //return $http.post('/image', img);
     };
+
+    var getReviews = function () {
+      return $http.get('/reviews');
+    }
+
     var saveReview = function (data) {
-      console.log(tinyMCE.get("mce").getContent());
       return $http.post('/reviews', data);
     };
+
     var deleteReview = function (id) {
       return;
     };
 
-    var getTemplate = function (cat) {
-      return $http.get('/templates', cat);
+    var getTemplate = function (temp) {
+      return $http.get('/template', temp);
     };
 
     var getTemplates = function () {
@@ -25,12 +30,12 @@ angular.module('reviewModule')
     };
 
     var saveTemplate = function (temp) {
-      console.log('saving template...');
       return $http.post('/templates', temp);
     };
 
     return {
       storeImage   : storeImage,
+      getReviews   : getReviews,
       saveReview   : saveReview,
       deleteReview : deleteReview,
       getTemplate  : getTemplate,

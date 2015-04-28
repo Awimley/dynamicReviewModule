@@ -4,21 +4,29 @@
 
   homeCtrl.$inject = ['$scope', '$resource', '$log', 'reviewData', '$location', '$route'];
   function homeCtrl ($scope, $resource, $log, reviewData, $location, $route) {
+    var vm = this;
+    var Files = $resource('/images', {  });
+
     reviewData.getTemplates()
     .success(function (data) {
       vm.templates = data;
     })
     .error(function (err) {
       $log.debug(err);
+    });
+
+    reviewData.getReviews()
+    .success(function (data) {
+      vm.reviews = data;
     })
+    .error(function (err) {
+      $log.debug(err);
+    });
 
-    var vm = this;
-    var Files = $resource('/images', {  });
-
-    vm.form = {};
-    vm.form.text={};
-    vm.form.rtf={};
-    vm.form.select={};
+    vm.form = {},
+    vm.form.text={},
+    vm.form.rtf={},
+    vm.form.select={},
     vm.form.check={};
 
     vm.fieldName = '',
@@ -28,8 +36,10 @@
     vm.cons = [],
     vm.stars = [],
     vm.fields = [],
+    vm.exit = 0,
     vm.areYouSure = 0,
     vm.rating = 0,
+
     vm.ratings = [
     {
       name: "zero",
@@ -51,6 +61,19 @@
       num: 5
     }];
 
+    vm.loadReview = function () {
+      $log.debug(vm.review);
+      tinyMCE.get("mce").setContent(vm.review.rtf.reviewText);
+      vm.rating = vm.review.rating;
+      vm.pros = vm.review.pros;
+      vm.cons = vm.review.cons;
+      vm.form.text = vm.review.text;
+      vm.form.rtf = vm.review.rtf;
+      vm.form.check = vm.review.check;
+      vm.form.select = vm.review.select;
+      vm.form.user = vm.review.user;
+    };
+
     vm.makeArray = function (num) {
       vm.stars = new Array(num);
       return vm.stars;
@@ -66,6 +89,7 @@
     });
     */
     vm.inputTypes = ['select', 'input', 'mceEditor', 'checkbox'];
+
     vm.addField = function (e) {
       console.log('tryna add a field?');
     };
@@ -73,16 +97,42 @@
     //Clear fields section. could probalby DRY this.
     vm.clearOnEnterPro = function (e) {
       if (e.keyCode == 13) {
+        angular.forEach(vm.pros, function (v, i) {
+          if (v == vm.proInput) {
+            $log.debug(v);
+            vm.pros.splice(vm.pros.indexOf(v), 1);
+            vm.proInput = '';
+            vm.exit = 1;
+          }
+        });
+        if (vm.exit == 1) {
+          vm.exit = 0;
+          return 1;
+        }
         vm.pros.push(vm.proInput);
         vm.proInput = '';
       }
     };
+
     vm.clearOnEnterCon = function (e) {
       if (e.keyCode == 13) {
+        angular.forEach(vm.cons, function (v, i) {
+          if (v == vm.conInput) {
+            $log.debug(v);
+            vm.cons.splice(vm.cons.indexOf(v), 1);
+            vm.conInput = '';
+            vm.exit = 1;
+          }
+        });
+        if (vm.exit == 1) {
+          vm.exit = 0;
+          return 1;
+        }
         vm.cons.push(vm.conInput);
         vm.conInput = '';
       }
     };
+
     vm.clearOnEnterField = function (e) {
       if (e.keyCode == 13) {
         vm.fieldName = '';
@@ -91,19 +141,45 @@
 
     //Master export function
     vm.saveReview = function () {
-      $log.debug('Pros:');
-      angular.forEach(vm.cons, function (v,i) {
-        $log.debug(v);
-      });
-
-      $log.debug('Cons:');
-      angular.forEach(vm.pros, function (v,i) {
-        $log.debug(v);
-      });
+      if (!vm.template) {
+        vm.error = 'Please create a template for your form. i.e.. unique category required.'
+        return 1;
+      }
+      //Exporting the defaults (isolated 'form' object)
+      vm.form.cons = vm.cons;
+      vm.form.pros = vm.pros;
       vm.form.rtf["reviewText"] = tinyMCE.get("mce").getContent();
+      vm.form.cat = vm.template.cat;
+      vm.form.rating = vm.rating;
 
-      $log.debug(vm.form);
-    }
+      //Exporting custom areas
+      if (vm.review) {
+        $log.debug('we have loaded a review.');
+      }
+
+      //text
+      if (vm.review) {
+        vm.form.text = vm.review.text;
+      }
+
+      //rtf
+      if (vm.review) {
+        vm.form.rtf = vm.review.rtf;
+      }
+
+      //select
+      if (vm.review) {
+        vm.form.select = vm.review.select;
+      }
+
+      //check
+      if (vm.review) {
+        vm.form.check = vm.review.check;
+      }
+      
+      reviewData.saveReview(vm.form);
+      $route.reload();
+    };
 
     vm.go = function (path) {
       $location.path(path);
@@ -112,14 +188,6 @@
     //Master clear
     vm.clearForms = function () {
       $route.reload();
-/*      document.getElementById('prosUl').innerHTML = '';
-      document.getElementById('consUl').innerHTML = '';
-      tinyMCE.get("mce").setContent('');
-      
-
-      vm.areYouSure = 0;
-
-      $log.debug(reviewData.getTemplate(''));*/
     };
   }
 })()

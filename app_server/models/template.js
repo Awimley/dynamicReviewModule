@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var templateSchema = new mongoose.Schema({
-  cat: String,
+  cat: {type: String, unique: true},
   text: Array,
   rtf: Array,
   check: Object,

@@ -1,26 +1,38 @@
 <div id="container">
   <h3>Create a review template</h3>
-  <h4>Use ENTER key to submit fields. Defaults: RTF review text, pro/con lists, rating.</h4>
+  <h4>Use ENTER key to submit fields. Submit the SAME(case sensitive) field name twice to delete it.</h4>
   <div class="row">
     <div class="col-xs-3">
       <button class="btn btn-default" ng-click="vm.go('/')">Add review</button>
     </div>
     <div class="col-xs-3">
-      <button class="btn btn-default">Update a template</button>
+      <h4>Update a template: </h4>
+      <select ng-options="options as options.cat for options in vm.temps" ng-model="vm.temp" ng-change="vm.setCat = true;"></select>
     </div>
   </div>
+
   <hr>
-  <form>
-    <div class="row form-group">
-      <div class="col-xs-4">
-        <label>Category (must be unique):</label>
-      </div>
-      <div class="col-xs-8">
-        <input ng-model="vm.temp.cat" ng-disabled="vm.setCat">
-      </div>
+  <div class="row errors">
+    <h3 class="alert-danger text-center" ng-show="vm.error">{{ vm.error }}</h4>
+  </div>
+
+
+  <div class="row form-group">
+    <div class="col-xs-4">
+      <label>Category (must be unique):</label>
     </div>
-    <button ng-hide="1" ng-click="vm.addCat()"></button>
-  </form>
+    <form>
+      <div class="col-xs-7">
+        <input class="catInput" ng-model="vm.temp.cat" ng-disabled="vm.setCat" ng-required>        
+      </div>
+      <button type="submit" ng-hide="1" ng-click="vm.addCat()"></button>
+    </form>
+    <div class="col-xs-1">
+      <button class="changeCat btn btn-default pull-right" ng-click="vm.editCat()">Change</button>
+    </div>
+  </div>
+    
+
 
   <form>
     <div class="row form-group">
@@ -88,7 +100,7 @@
     <div class="col-xs-8">
       <form>
         <ul>
-          <li>{{ prop }} : {{ check }} <input ng-model="vm.checkOptions[prop]" placeholder="add an option" class="subInput"></li> <!-- NG MODEL THIS -->
+          <li>{{ prop }} : {{ check }} <input ng-model="vm.checkOptions[prop]" placeholder="add an option" class="subInput"></li>
         </ul>
         <button ng-hide="1" ng-click="vm.addCheckOption(prop)"></button>
       </form>
@@ -116,8 +128,7 @@
     <div class="col-xs-8">
       <form>
         <ul>
-          <li>{{ prop }} : {{ select }}<input placeholder="add an option" class="subInput" ng-model="vm.selectOptions[prop]"></li> <!-- NG MODEL THIS -->
-        </ul>
+          <li>{{ prop }} : {{ select }}<input placeholder="add an option" class="subInput" ng-model="vm.selectOptions[prop]"></li>
         <button ng-hide="1" ng-click="vm.addSelectOption(prop)"></button>
       </form>
     </div>
@@ -128,7 +139,8 @@
     <div class="col-xs-4">
     </div>
     <div class="col-xs-4">
-      <button class="btn btn-default">Clear Form</button>
+      <button class="btn btn-default" ng-hide="vm.areYouSure" ng-click="vm.areYouSure = true;">Clear Form</button>
+      <button class="btn btn-danger" ng-click="vm.clearTemplate()" ng-hide="!vm.areYouSure">Are you sure?</button>
     </div>
     <div class="col-xs-4">
       <button class="btn btn-primary" ng-click="vm.saveTemplate()">Save Template</button>

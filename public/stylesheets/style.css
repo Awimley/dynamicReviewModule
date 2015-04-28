@@ -76,3 +76,16 @@ label {
   width: 25px;
   margin-top: 8px;"
 }
+.changeCat {
+  position: relative;
+  z-index: 100;
+  width: 80%;
+  height: 40px;
+}
+.catInput {
+  width: 114.5%;
+}
+.homeBar {
+  margin: 6px;
+  padding: 4px;
+}
