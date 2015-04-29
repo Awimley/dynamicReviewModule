@@ -7,14 +7,19 @@ function config ($routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/', {
-      templateUrl: 'home/home.html',
-      controller: 'homeCtrl',
-      controllerAs: 'vm'
+      templateUrl  : 'landing/landing.html',
+      controller   : 'landingCtrl',
+      controllerAs : 'vm'
+    })
+    .when('/home', {
+      templateUrl  : 'home/home.html',
+      controller   : 'homeCtrl',
+      controllerAs : 'vm'
     })
     .when('/createTemplate', {
-      templateUrl: 'templates/createTemplate.html',
-      controller: 'createTemplateCtrl',
-      controllerAs: 'vm'
+      templateUrl  : 'templates/createTemplate.html',
+      controller   : 'createTemplateCtrl',
+      controllerAs : 'vm'
     })
     .otherwise({redirectTo: '/'});
 

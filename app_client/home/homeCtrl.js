@@ -144,7 +144,7 @@
     //Master export function
     vm.saveReview = function () {
       if (!vm.template) {
-        vm.error = 'Please create a template for your form. i.e.. unique category required.'
+        vm.error = 'Please create a template for your form. i.e.. unique category required.';
         return 1;
       }
       //Exporting the defaults (isolated 'form' object)

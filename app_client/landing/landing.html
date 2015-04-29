@@ -1,0 +1,62 @@
+<div id="container">
+  <div class="row">
+    <div class="header col-xs-9">
+      <h1> Soft Wary </h1>
+      <h3 class="strapline"> Bellwether Technologies </h3>
+    </div>
+
+    <div class="col-xs-3 logIn shadeMe">
+      <div class="row">
+        <div class="col-xs-6">
+          <h3> Username: </h3>
+        </div>
+        <div class="col-xs-6">
+          <input class="logIn" for="username">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <h3> Password: </h3>
+        </div>
+        <div class="col-xs-6">
+          <input class="logIn" for="password">
+        </div>
+      </div>
+      <div class="row text-center createAccount">
+        <button class="btn btn-primary" style="width: 80%;">Log In</button><p style="font-size: large;"> or, <a>create an account.</a></p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="listDivider"><hr class="listDivider">
+
+  <div class="row">
+    <ul id="productsList">
+      <li class="productLi shadow" ng-repeat="product in vm.vendor.products">
+        <div class="row">
+          <div class="col-xs-4 nameAndRating"  style="font-size: x-large;">
+            <h3> {{ product.name }} </h3>
+            <h4> <div class="pull-left"> Rating: </div><span class="glyphicon glyphicon-star stars-span pull-left" style="color: yellow;" ng-repeat="i in vm.makeArray(product.rating) track by $index"></span></h4>
+          </div>
+          <div class="col-xs-6" style="font-size: large;">
+            <p class="reviewText">{{ product.profile.reviewText }}</p>
+          </div>
+          <div class="col-xs-1"></div>
+          <div class="col-xs-1 pull-right">
+            <h4><b>Category:</b></h4>
+            <h4> {{ product.category }}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2">
+          </div>
+          <div class="col-xs-8 text-center">
+            <hr>
+          </div>
+          <div class="col-xs-2">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
