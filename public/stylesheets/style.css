@@ -116,6 +116,10 @@ label {
 .productLi {
   border-radius: 50px;
   height: 140px;
+
+}
+.productLi:hover {
+  transform: scale(1.01);
 }
 .reviewText {
   position:relative;
@@ -128,8 +132,9 @@ label {
   overflow: hidden;
 }
 .shadow {
-  -webkit-transition: -webkit-box-shadow 0.5s, -moz-box-shadow 0.5s, box-shadow 0.5s;
-  transition: -webkit-box-shadow 0.5s, -moz-box-shadow 0.5s, box-shadow 0.5s;;
+  -webkit-transition: -webkit-box-shadow 0.4s ease-in-out, -moz-box-shadow 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  transition: -webkit-box-shadow 0.4s ease-in-out, -moz-box-shadow 0.4s ease-in-out, box-shadow 0.4s ease-in-out, transform 0.2s ease-in-out;
+  margin: 4px;
 }
 .shadow:hover {
   -webkit-box-shadow: 0px 0px 30px 5px #aaa;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
