@@ -132,8 +132,8 @@ label {
   overflow: hidden;
 }
 .shadow {
-  -webkit-transition: -webkit-box-shadow 0.4s ease-in-out, -moz-box-shadow 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-  transition: -webkit-box-shadow 0.4s ease-in-out, -moz-box-shadow 0.4s ease-in-out, box-shadow 0.4s ease-in-out, transform 0.2s ease-in-out;
+  -webkit-transition: -webkit-box-shadow 0.25s ease-in-out, -moz-box-shadow 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  transition: -webkit-box-shadow 0.25s ease-in-out, -moz-box-shadow 0.25s ease-in-out, box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out;
   margin: 4px;
 }
 .shadow:hover {
