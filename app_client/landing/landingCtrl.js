@@ -6,6 +6,8 @@ angular.module('reviewModule')
   function landingCtrl ($log) {
     var vm = this;
 
+    vm.category = '';
+
     //fake data, YAY
     vm.vendor = {
       products: [{
@@ -37,7 +39,30 @@ angular.module('reviewModule')
         profile: {
           reviewText: "WOW! This is fantastic software for data visualization! It knocks origin right out of the water, and who ever even bothered mentioning matlab, AMIRITE? In combination with the fantastic analysis suite, 'DATA DATA DATA', this will help you look for trends and patterns in any data set, no matter the size of the complexity of analysis. It can integrate entire data-sets for you! [test wrap] MATH IS COOL YALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL!"
         }
+      }, {
+        name: "Overflow Scrolling",
+        rating: 4,
+        category: "Data management",
+        profile: {
+          reviewText: "I love overflow scrolling for chuncking my data and making it nice and organized. In fact, I only created this software so I'd have enough entries to code overflow scrolling into the original product list!"
+        }
       }]
+    };
+
+    //Fake query data (the sorts will be sortable in the end-game, so working with options stored on the scope is the way)
+    vm.sort = {
+      categories: {
+        dataManagement: "Data Management",
+        serverSideFramework: "Server Side Framework",
+        pdfReadWrite: "PDF read/write",
+        dataVisualization: "Data visualization"
+      },
+      by: {
+        recent: "Most Recent",
+        priceL: "Price, lowest",
+        priceH: "Price, highest",
+        releaseDate: "Release Date"
+      }
     };
 
     vm.makeArray = function (num) {

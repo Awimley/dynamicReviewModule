@@ -112,7 +112,8 @@ label {
   margin-left: 12px;
 }
 .productLi {
-  border-radius: 25px;
+  border-radius: 50px;
+  height: 140px;
 }
 .reviewText {
   position:relative;
@@ -124,10 +125,14 @@ label {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
+.shadow {
+  -webkit-transition: -webkit-box-shadow 0.5s, -moz-box-shadow 0.5s, box-shadow 0.5s;
+  transition: -webkit-box-shadow 0.5s, -moz-box-shadow 0.5s, box-shadow 0.5s;;
+}
 .shadow:hover {
-  -webkit-box-shadow: 0px 0px 20px 5px #aaa;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow:    0px 0px 20px 5px #aaa;  /* Firefox 3.5 - 3.6 */
-  box-shadow:         0px 0px 20px 5px #aaa;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  -webkit-box-shadow: 0px 0px 30px 5px #aaa;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    0px 0px 30px 5px #aaa;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0px 0px 30px 5px #aaa;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 .shadeMe {
   -webkit-box-shadow: 0px 0px 5px 8px #777777;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
@@ -140,10 +145,26 @@ label {
   margin: 10px;
 }
 .reviewText {
-  margin: 10px;
+
 }
+
 .listDivider {
   -moz-box-shadow:    inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow:         inset 0 0 10px #000000;
+}
+.sortBar {
+  position: relative;
+  margin-top: 10px;
+  width: 250px;
+  height: 40px;
+}
+.sortBarLabel {
+  margin-top: 133px;
+}
+.nameAndRating {
+  margin-left: 32px;
+}
+.categoryDiv {
+  margin-top: 25px;
 }
