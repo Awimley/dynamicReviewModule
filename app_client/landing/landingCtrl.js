@@ -46,6 +46,8 @@ angular.module('reviewModule')
         profile: {
           reviewText: "I love overflow scrolling for chuncking my data and making it nice and organized. In fact, I only created this software so I'd have enough entries to code overflow scrolling into the original product list!"
         }
+      }, {
+        
       }]
     };
 
