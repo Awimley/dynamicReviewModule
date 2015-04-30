@@ -47,7 +47,12 @@ angular.module('reviewModule')
           reviewText: "I love overflow scrolling for chuncking my data and making it nice and organized. In fact, I only created this software so I'd have enough entries to code overflow scrolling into the original product list!"
         }
       }, {
-        
+        name: "Kerbel Space Program",
+        rating: 5,
+        category: "Game",
+        profile: {
+          reviewText: "Kerbel Space Program (KSP) is a fantastic new engineering oriented game that focuses on building machines for spaceflight and normal flight. The design engine is fantastic and modular, allowing people to incorporate and share custom parts. Additionally, if STEAM ever gets its act together involving paid mods there can be an unlimited number of NPCs and missions. To top it all off on a note That I like particularly, KSP comes with a native debian install!!"
+        }
       }]
     };
 

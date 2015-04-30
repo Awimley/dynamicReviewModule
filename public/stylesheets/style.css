@@ -53,10 +53,9 @@ select {
 }
 input {
   width: 100%;
-  font-size: x-large;
 }
 label {
-  font-size: x-large;
+  font-size: large;
 }
 .list {
   font-size: large;
@@ -95,6 +94,7 @@ label {
 .strapline {
   color: #777777;
   opacity: 0.8;
+  margin-top: 45px;
 }
 .header {
   height: 100%;
@@ -107,6 +107,8 @@ label {
 }
 #productsList {
   list-style-type: none;
+  overflow-scrolling: auto;
+  -webkit-overflow-scrolling: auto;
 }
 .stars-span {
   margin-left: 12px;
@@ -160,7 +162,7 @@ label {
   height: 40px;
 }
 .sortBarLabel {
-  margin-top: 160px;
+  margin-top: 80px;
 }
 .nameAndRating {
   margin-left: 32px;
@@ -168,3 +170,7 @@ label {
 .categoryDiv {
   margin-top: 25px;
 }
+#mainTitle {
+
+}
+

@@ -1,10 +1,16 @@
 <div id="container">
   <div class="row">
-    <div class="header col-xs-3">
-      <h1> Soft Wary </h1>
-      <h3 class="strapline"> Bellwether Technologies </h3>
-    </div>
-    <div class="col-xs-6">
+      
+    <div class="col-xs-9">
+      <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-3">
+          <h1 id="mainTitle" class="pull-right"> Soft Wary </h1>
+        </div>
+        <div class="col-xs-7">
+          <h3 class="strapline pull-left"> Bellwether Technologies </h3>
+        </div>
+      </div>
       <div class="row">
         <div class="col-xs-4">
           <label class="sortBarLabel">Category:</label>
@@ -23,7 +29,7 @@
     <div class="col-xs-3 logIn shadeMe">
       <div class="row">
         <div class="col-xs-6">
-          <h3> Username: </h3>
+          <h4> Username: </h4>
         </div>
         <div class="col-xs-6">
           <input class="logIn" for="username">
@@ -31,7 +37,7 @@
       </div>
       <div class="row">
         <div class="col-xs-6">
-          <h3> Password: </h3>
+          <h4> Password: </h4>
         </div>
         <div class="col-xs-6">
           <input class="logIn" for="password">
@@ -49,26 +55,30 @@
     <ul id="productsList">
       <li class="productLi shadow" ng-repeat="product in vm.vendor.products">
         <div class="row">
-          <div class="col-xs-3 nameAndRating"  style="font-size: large;">
-            <h3> {{ product.name }} </h3>
-            <h4> <div class="pull-left"> Rating: </div><span class="glyphicon glyphicon-star stars-span pull-left" style="color: yellow;" ng-repeat="i in vm.makeArray(product.rating) track by $index"></span></h4>
-          </div>
-          <div class="col-xs-6" style="font-size: medium;">
-            <p class="reviewText">{{ product.profile.reviewText }}</p>
-          </div>
-          <div class="col-xs-1"></div>
-          <div class="col-xs-2 categoryDiv">
-            <h4><b>Category:</b></h4>
-            <h4> {{ product.category }}</h4>
-          </div>
+          <a href="/home">
+            <div class="col-xs-3 nameAndRating"  style="font-size: large;">
+              <h3> {{ product.name }} </h3>
+              <h4> <div class="pull-left"> Rating: </div><span class="glyphicon glyphicon-star stars-span pull-left" style="color: yellow;" ng-repeat="i in vm.makeArray(product.rating) track by $index"></span></h4>
+            </div>
+            <div class="col-xs-6" style="font-size: medium;">
+              <p class="reviewText" style="color: black;">{{ product.profile.reviewText }}</p>
+            </div>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2 categoryDiv">
+              <h4><b>Category:</b></h4>
+              <h4> {{ product.category }}</h4>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-xs-2">
+          <div class="row">
+            <div class="col-xs-2">
+              
+            </div>
+            <div class="col-xs-8 text-center">
+            </div>
+            <div class="col-xs-2">
+            </div>
           </div>
-          <div class="col-xs-8 text-center">
-          </div>
-          <div class="col-xs-2">
-          </div>
+          </a>
         </div>
       </li>
     </ul>
