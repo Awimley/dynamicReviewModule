@@ -49,7 +49,8 @@
     </div>
   </div>
 
-  <img src="/images/svg/cd.svg" /><img src="/images/svg/cd.svg"/>
+  <hr><hr><!-- <img src="images/Bell.png">&nbsp<img src="images/Bell.png">&nbsp<img src="images/Bell.png">&nbsp<img src="images/Bell.png"> -->
+
   <div class="row">
     <ul id="productsList">
       <li class="productLi shadow" ng-repeat="product in vm.vendor.products">
@@ -57,7 +58,7 @@
           <a href="/home">
             <div class="col-xs-3 nameAndRating"  style="font-size: large;">
               <h3> {{ product.name }} </h3>
-              <h4> <div class="pull-left"> Rating: </div><span class="glyphicon glyphicon-star stars-span pull-left" style="color: yellow;" ng-repeat="i in vm.makeArray(product.rating) track by $index"></span></h4>
+              <h4> <div class="pull-left"> Rating: </div><span class="glyphicon glyphicon-star stars-span pull-left" style="color: #FFCC00;" ng-repeat="i in vm.makeArray(product.rating) track by $index"></span></h4>
             </div>
             <div class="col-xs-6" style="font-size: medium;">
               <p class="reviewText" style="color: black;">{{ product.profile.reviewText }}</p>

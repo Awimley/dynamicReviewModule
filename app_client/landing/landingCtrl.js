@@ -5,7 +5,6 @@ angular.module('reviewModule')
   landingCtrl.$inject = ['$log'];
   function landingCtrl ($log) {
     var vm = this;
-
     vm.category = '';
 
     //fake data, YAY
