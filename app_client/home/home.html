@@ -37,16 +37,19 @@
 
   <div class="row">
     <div class="col-xs-1"><h4>Rating: </h4></div>
-    <div class="col-xs-3 stars"><span class="glyphicon glyphicon-star stars-span pull-left" style="color: yellow;" ng-repeat="i in vm.makeArray(vm.rating) track by $index"></span></div>
+    <div class="col-xs-3 stars">
+      <select ng-model="vm.rating" ng-options="rating.num as rating.name for rating in vm.ratings">
+      </select>
+    </div>
     <div class="col-xs-8"></div>
-  </div>
+      <span class="glyphicon glyphicon-star stars-span" ng-repeat="i in vm.makeArray(vm.rating) track by $index"></span>
+    </div>
 
-    <select ng-model="vm.rating" ng-options="rating.num as rating.name for rating in vm.ratings">
-    </select>
+    <hr>
 
     <div class="row">     
       <div class="col-xs-2">
-        <h4>Strengths and Weaknesses:</h4>
+        <h4 id="strengthsAndWeaknesses">Strengths and Weaknesses:</h4>
       </div>
 
       <!-- PROS -->
@@ -57,7 +60,7 @@
           <button ng-show="false" pro="1" pro-input="{{ vm.proInput }}" ng-click="vm.clearOnEnterPro($event)"></button>
         </form>
         <ul id="prosUl" ng-repeat="pro in vm.pros">
-          <li>{{ pro }}</li>
+          <li class="prosLi">{{ pro }}</li>
         </ul>
       </div>
 
@@ -69,7 +72,7 @@
           <button ng-show="false" con="1" con-input="{{ vm.conInput }}" ng-click="vm.clearOnEnterCon($event)"></button>
         </form>
         <ul id="consUl" ng-repeat="con in vm.cons">
-          <li>{{ con }}</li>
+          <li class="consLi">{{ con }}</li>
         </ul>
       </div>
     </div>

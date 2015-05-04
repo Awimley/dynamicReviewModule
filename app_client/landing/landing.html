@@ -22,7 +22,7 @@
         </div>
         <div class="col-xs-4">
           <label class="sortBarLabel">Search:</label>
-          <input class="sortBar">
+          <input class="sortBar" ng-model="vm.query">
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
 
   <div class="row">
     <ul id="productsList">
-      <li class="productLi shadow" ng-repeat="product in vm.vendor.products">
+      <li class="productLi shadow" ng-repeat="product in vm.vendor.products | filter: vm.query | orderBy: product.rating">
         <div class="row">
           <a href="/home">
             <div class="col-xs-3 nameAndRating"  style="font-size: large;">
